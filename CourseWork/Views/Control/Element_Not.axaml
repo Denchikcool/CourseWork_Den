@@ -1,0 +1,24 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:converters="clr-namespace:CourseWork.Converters"
+        xmlns:controls="using:CourseWork.Views.Control">
+  <Design.PreviewWith>
+    <controls:Element_Not />
+  </Design.PreviewWith>
+
+  <Styles.Resources>
+    <converters:FocusColorConverter x:Key="focusColor"/>
+  </Styles.Resources>
+
+  <Style Selector="controls|Element_Not">
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Canvas Name="NotCanvas" Width="90" Height="80" Background="Transparent">
+          <Ellipse Name="Input" Fill="Gray" Height="7" Width="7" Canvas.Top="9" Canvas.Left="2"/>
+          <Polygon Points="7,2 7,23 30,12.5 7,2" Fill="LightGray" Stroke="{TemplateBinding FocusOnElement, Converter={StaticResource focusColor}}" StrokeThickness="1" Canvas.Left="2"/>
+          <Ellipse Name="Output" Fill="Gray" Stroke="Black" StrokeThickness="1" Height="7" Width="7" Canvas.Top="9" Canvas.Left="32"/>
+        </Canvas>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+</Styles>

@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="using:CourseWork.Views.Control"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+              Width="{Binding $parent[Window].Width}" Height="{Binding $parent[Window].Height}"
+             x:Class="CourseWork.Views.StartView">
+
+
+
+  <Grid RowDefinitions="*, *" ColumnDefinitions="*, *, *" Focusable="True">
+    <Button Height="100" Width="200" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="1" Content="Создать новый проект" Click="CreateProjectButtonClick"/>
+    <Button Height="100" Width="200" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="1" Content="Открыть проект" Click="OpenProjectButtonClick"/>
+    <Button Height="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="200" Grid.Column="2" Grid.Row="1" Content="Выход" Click="CloseWindowButtonClick"/>
+    <ListBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Items="{Binding Projects}" SelectedIndex="{Binding Index}">
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <TextBlock Text="{Binding Name}" FontSize="24"/>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+  </Grid>
+</UserControl>

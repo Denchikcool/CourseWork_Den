@@ -1,0 +1,117 @@
+{
+  "$type": "CourseWork.Models.Project, CourseWork",
+  "Name": "Project",
+  "Schemes": {
+    "$type": "System.Collections.ObjectModel.ObservableCollection`1[[CourseWork.Models.Scheme, CourseWork]], System.ObjectModel",
+    "$values": [
+      {
+        "$type": "CourseWork.Models.Scheme, CourseWork",
+        "Name": "Scheme",
+        "Elements": {
+          "$type": "System.Collections.ObjectModel.ObservableCollection`1[[CourseWork.Models.Element, CourseWork]], System.ObjectModel",
+          "$values": [
+            {
+              "$type": "CourseWork.Models.SerializebleElements.SerializebleInput, CourseWork",
+              "SignalOut": true,
+              "StartPoint": "60, 180",
+              "ID": 0,
+              "FocusOnElement": false
+            },
+            {
+              "$type": "CourseWork.Models.SerializebleElements.SerializebleInput, CourseWork",
+              "SignalOut": true,
+              "StartPoint": "62, 241",
+              "ID": 1,
+              "FocusOnElement": false
+            },
+            {
+              "$type": "CourseWork.Models.SerializebleElements.SerializebleInput, CourseWork",
+              "SignalOut": false,
+              "StartPoint": "894, 114",
+              "ID": 2,
+              "FocusOnElement": false
+            },
+            {
+              "$type": "CourseWork.Models.SerializebleElements.SerializebleInput, CourseWork",
+              "SignalOut": false,
+              "StartPoint": "910, 211",
+              "ID": 3,
+              "FocusOnElement": false
+            },
+            {
+              "$type": "CourseWork.Models.SerializebleElements.SerializebleOutput, CourseWork",
+              "SignalIn": false,
+              "IsConnected": false,
+              "StartPoint": "915, 317",
+              "ID": 4,
+              "FocusOnElement": false
+            },
+            {
+              "$type": "CourseWork.Models.SerializebleElements.SerializebleOutput, CourseWork",
+              "SignalIn": true,
+              "IsConnected": true,
+              "StartPoint": "712, 214",
+              "ID": 5,
+              "FocusOnElement": true
+            },
+            {
+              "$type": "CourseWork.Models.SerializebleElements.SerializebleTwoInputElements, CourseWork",
+              "Type": "AndGate",
+              "Input1": true,
+              "Input2": true,
+              "IsConnectedInput1": true,
+              "IsConnectedInput2": true,
+              "StartPoint": "354, 196",
+              "ID": 6,
+              "FocusOnElement": false
+            },
+            {
+              "$type": "CourseWork.Models.SerializebleElements.SerializebleConnector, CourseWork",
+              "StartPoint": "109, 198",
+              "EndPoint": "362, 216",
+              "FirstElement": 0,
+              "SecondElement": 6,
+              "ConnectToFirstInput": true,
+              "ConnectFromFirstInput": true,
+              "ReverseConnection": false,
+              "ID": 7,
+              "FocusOnElement": false
+            },
+            {
+              "$type": "CourseWork.Models.SerializebleElements.SerializebleConnector, CourseWork",
+              "StartPoint": "108, 261",
+              "EndPoint": "361, 248",
+              "FirstElement": 1,
+              "SecondElement": 6,
+              "ConnectToFirstInput": false,
+              "ConnectFromFirstInput": true,
+              "ReverseConnection": false,
+              "ID": 8,
+              "FocusOnElement": false
+            },
+            {
+              "$type": "CourseWork.Models.SerializebleElements.SerializebleConnector, CourseWork",
+              "StartPoint": "433, 230",
+              "EndPoint": "717, 235",
+              "FirstElement": 6,
+              "SecondElement": 5,
+              "ConnectToFirstInput": true,
+              "ConnectFromFirstInput": true,
+              "ReverseConnection": false,
+              "ID": 9,
+              "FocusOnElement": false
+            }
+          ]
+        }
+      },
+      {
+        "$type": "CourseWork.Models.Scheme, CourseWork",
+        "Name": "Scheme",
+        "Elements": {
+          "$type": "System.Collections.ObjectModel.ObservableCollection`1[[CourseWork.Models.Element, CourseWork]], System.ObjectModel",
+          "$values": []
+        }
+      }
+    ]
+  }
+}

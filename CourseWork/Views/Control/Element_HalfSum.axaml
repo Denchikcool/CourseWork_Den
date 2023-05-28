@@ -1,0 +1,34 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:converters="clr-namespace:CourseWork.Converters"
+        xmlns:controls="using:CourseWork.Views.Control">
+  <Design.PreviewWith>
+    <controls:Element_HalfSum />
+  </Design.PreviewWith>
+
+  <Styles.Resources>
+    <converters:FocusColorConverter x:Key="focusColor"/>
+  </Styles.Resources>
+
+  <Style Selector="controls|Element_HalfSum">
+    <Setter Property="Template">
+      <ControlTemplate>
+
+        <Canvas Name="SemiSummatorCanvas" Width="120" Height="70" Background="Transparent">
+          <Rectangle Stroke="{TemplateBinding FocusOnElement, Converter={StaticResource focusColor}}" Fill="LightGray" Canvas.Top="5" Canvas.Left="10" Width="90" Height="60" StrokeThickness="0.5"/>
+          <Line StartPoint="40, 5" EndPoint="40, 65" Stroke="Black" StrokeThickness="0.5"/>
+          <Line StartPoint="70, 5" EndPoint="70, 65" StrokeThickness="0.5" Stroke="Black"/>
+          <TextBlock Text="HS" Canvas.Left="49" FontSize="8" Canvas.Top="7"/>
+          <TextBlock Text="A" Canvas.Left="22" FontSize="8" Canvas.Top="40"/>
+          <TextBlock Text="B" Canvas.Left="22" FontSize="8" Canvas.Top="50"/>
+          <TextBlock Text="S" Canvas.Left="83" FontSize="8" Canvas.Top="40"/>
+          <TextBlock Text="P0" Canvas.Left="83" FontSize="8" Canvas.Top="50"/>
+          <Ellipse Name="Input1" Fill="Gray" Width="8" Height="8" Canvas.Top="40" Canvas.Left="3"/>
+          <Ellipse Name="Input2" Fill="Gray" Width="8" Height="8" Canvas.Top="53" Canvas.Left="3"/>
+          <Ellipse Name="Output1" Fill="Gray" Width="8" Height="8" Canvas.Top="40" Canvas.Left="99"/>
+          <Ellipse Name="Output2" Fill="Gray" Width="8" Height="8" Canvas.Top="53" Canvas.Left="99"/>
+        </Canvas>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+</Styles>

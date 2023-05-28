@@ -1,0 +1,138 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:controls="clr-namespace:CourseWork.Views.Control"
+			 xmlns:vm="clr-namespace:CourseWork.ViewModels"
+		     xmlns:models="clr-namespace:CourseWork.Models"
+		     xmlns:logical="clr-namespace:CourseWork.Models.LogicalElements"
+		     xmlns:converters="clr-namespace:CourseWork.Converters"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             Width="{Binding $parent[Window].Width}" Height="{Binding $parent[Window].Height}"
+             x:Class="CourseWork.Views.MainUserControlView">
+
+  <Design.DataContext>
+    <vm:MainUserControlViewModel/>
+  </Design.DataContext>
+
+  <UserControl.Resources>
+    <converters:FocusColorConverter x:Key="colorFocus"/>
+  </UserControl.Resources>
+
+
+  <Grid ColumnDefinitions="*, 200" Focusable="True" ShowGridLines="True">
+    <Grid RowDefinitions="Auto, *, 30, 30" Grid.Column="1" ShowGridLines="True">
+      <Border Grid.Row="0" BorderThickness="1" BorderBrush="Black">
+        <Menu Grid.Column="0" Grid.Row="0">
+          <MenuItem Name="Menu" Header="Меню">
+            <MenuItem Header="Создать" Command="{Binding CreateProject}"/>
+            <MenuItem Header="Открыть" Click="OpenFileDialogMenuYamlClick"/>
+            <MenuItem Header="Сохранить" Click="SaveFileDialogMenuYamlClick"/>
+            <MenuItem Header="Выйти" Click="CloseWindowButtonClick"/>
+          </MenuItem>
+          <MenuItem Name="Elements" Header="Элементы">
+            <RadioButton IsChecked="{Binding IsInput}" GroupName="Group">
+              <controls:Element_Enter Signal="True"/>
+            </RadioButton>
+            <RadioButton IsChecked="{Binding IsOutput}" GroupName="Group">
+              <controls:Element_Out Signal="True"/>
+            </RadioButton>
+            <RadioButton IsChecked="{Binding IsNotGate}" GroupName="Group">
+              <controls:Element_Not/>
+            </RadioButton>
+            <RadioButton IsChecked="{Binding IsAndGate}" GroupName="Group">
+              <controls:Element_And/>
+            </RadioButton>
+            <RadioButton IsChecked="{Binding IsOrGate}" GroupName="Group">
+              <controls:Element_Or/>
+            </RadioButton>
+            <RadioButton IsChecked="{Binding IsXorGate}" GroupName="Group">
+              <controls:Element_XoR/>
+            </RadioButton>
+            <RadioButton IsChecked="{Binding IsSemiSummatorGate}" GroupName="Group">
+              <controls:Element_HalfSum/>
+            </RadioButton>
+          </MenuItem>
+        </Menu>
+      </Border>
+      <Border Grid.Row="1" BorderThickness="1" BorderBrush="Black">
+        <Grid RowDefinitions="Auto, *">
+          <controls:Element_TextBlock Grid.Row="0" Focusable="True" CustomText="{Binding Project.Name}" HorizontalAlignment="Center" FontSizeText="18" FontWeightText="Bold"/>
+          <ListBox Grid.Row="1" Items="{Binding Project.Schemes}" SelectedIndex="{Binding Index}">
+            <ListBox.ItemTemplate>
+              <DataTemplate>
+                <controls:Element_TextBlock Focusable="True" CustomText="{Binding Name}" FontSizeText="14" FontWeightText="Normal"/>
+              </DataTemplate>
+            </ListBox.ItemTemplate>
+          </ListBox>
+        </Grid>
+      </Border>
+      <Button IsVisible="False" Command="{Binding DeleteFocusedElement}" HotKey="Delete"/>
+      <Button Grid.Row="2" Content="Добаваить схему" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Command="{Binding AddScheme}"/>
+      <Button Grid.Row="3" Content="Удалить схему" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Command="{Binding DeleteScheme}"/>
+    </Grid>
+    <Border Grid.Column="0" BorderThickness="1" BorderBrush="Black">
+      <ItemsControl PointerPressed="PointerPressedOnMainCanvas" DoubleTapped="ChangeSignal" Focusable="True" Grid.Row="1" Grid.Column="1" Items="{Binding Elements}">
+        <ItemsControl.ItemsPanel>
+          <ItemsPanelTemplate>
+            <Canvas Name="mainCanvas" Background="White"/>
+          </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+        <ItemsControl.DataTemplates>
+          <DataTemplate DataType="{x:Type logical:InputElement}">
+            <controls:Element_Enter FocusOnElement="{Binding FocusOnElement}" Signal="{Binding SignalOut}" Focusable="True">
+              <controls:Element_Enter.RenderTransform>
+                <TranslateTransform X="{Binding StartPoint.X}" Y="{Binding StartPoint.Y}"/>
+              </controls:Element_Enter.RenderTransform>
+            </controls:Element_Enter>
+          </DataTemplate>
+          <DataTemplate DataType="{x:Type logical:OutputElement}">
+            <controls:Element_Out FocusOnElement="{Binding FocusOnElement}" Signal="{Binding SignalIn}" Focusable="True">
+              <controls:Element_Out.RenderTransform>
+                <TranslateTransform X="{Binding StartPoint.X}" Y="{Binding StartPoint.Y}"/>
+              </controls:Element_Out.RenderTransform>
+            </controls:Element_Out>
+          </DataTemplate>
+          <DataTemplate DataType="{x:Type logical:AndGate}">
+            <controls:Element_And FocusOnElement="{Binding FocusOnElement}" Focusable="True">
+              <controls:Element_And.RenderTransform>
+                <TranslateTransform X="{Binding StartPoint.X}" Y="{Binding StartPoint.Y}"/>
+              </controls:Element_And.RenderTransform>
+            </controls:Element_And>
+          </DataTemplate>
+          <DataTemplate DataType="{x:Type logical:OrGate}">
+            <controls:Element_Or FocusOnElement="{Binding FocusOnElement}" Focusable="True">
+              <controls:Element_Or.RenderTransform>
+                <TranslateTransform X="{Binding StartPoint.X}" Y="{Binding StartPoint.Y}"/>
+              </controls:Element_Or.RenderTransform>
+            </controls:Element_Or>
+          </DataTemplate>
+          <DataTemplate DataType="{x:Type logical:XorGate}">
+            <controls:Element_XoR FocusOnElement="{Binding FocusOnElement}" Focusable="True">
+              <controls:Element_XoR.RenderTransform>
+                <TranslateTransform X="{Binding StartPoint.X}" Y="{Binding StartPoint.Y}"/>
+              </controls:Element_XoR.RenderTransform>
+            </controls:Element_XoR>
+          </DataTemplate>
+          <DataTemplate DataType="{x:Type logical:NotGate}">
+            <controls:Element_Not FocusOnElement="{Binding FocusOnElement}" Focusable="True">
+              <controls:Element_Not.RenderTransform>
+                <TranslateTransform X="{Binding StartPoint.X}" Y="{Binding StartPoint.Y}"/>
+              </controls:Element_Not.RenderTransform>
+            </controls:Element_Not>
+          </DataTemplate>
+          <DataTemplate DataType="{x:Type logical:SemiSummatorGate}">
+            <controls:Element_HalfSum FocusOnElement="{Binding FocusOnElement}" Focusable="True">
+              <controls:Element_HalfSum.RenderTransform>
+                <TranslateTransform X="{Binding StartPoint.X}" Y="{Binding StartPoint.Y}"/>
+              </controls:Element_HalfSum.RenderTransform>
+            </controls:Element_HalfSum>
+          </DataTemplate>
+          <DataTemplate DataType="{x:Type models:Connector}">
+            <Line StartPoint="{Binding StartPoint}" EndPoint="{Binding EndPoint}" StrokeThickness="2" Stroke="{Binding FocusOnElement, Converter={StaticResource colorFocus}}" Focusable="True"/>
+          </DataTemplate>
+        </ItemsControl.DataTemplates>
+      </ItemsControl>
+    </Border>
+  </Grid>
+</UserControl>
