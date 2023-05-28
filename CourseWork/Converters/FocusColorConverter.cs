@@ -16,7 +16,7 @@ namespace CourseWork.Converters
         {
             if (value is bool focus && targetType.IsAssignableTo(typeof(IBrush)))
             {
-                return focus ? new SolidColorBrush(Colors.Blue) : new SolidColorBrush(Colors.LightGray);
+                return focus ? new SolidColorBrush(Colors.Blue) : new SolidColorBrush(Colors.Black);
             }
             return new BindingNotification(new InvalidCastException(), BindingErrorType.Error);
         }

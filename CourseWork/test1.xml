@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>Project</Name>
+  <Schemes>
+    <Scheme>
+      <Name>Scheme</Name>
+      <Elements>
+        <Element xsi:type="SerializebleInput">
+          <ID>0</ID>
+          <FocusOnElement>true</FocusOnElement>
+          <StartPoint>94, 207</StartPoint>
+          <SignalOut>true</SignalOut>
+        </Element>
+        <Element xsi:type="SerializebleInput">
+          <ID>1</ID>
+          <FocusOnElement>false</FocusOnElement>
+          <StartPoint>104, 329</StartPoint>
+          <SignalOut>false</SignalOut>
+        </Element>
+        <Element xsi:type="SerializebleTwoInputElements">
+          <ID>2</ID>
+          <FocusOnElement>false</FocusOnElement>
+          <StartPoint>320, 292</StartPoint>
+          <Type>XorGate</Type>
+          <Input1>true</Input1>
+          <Input2>false</Input2>
+          <IsConnectedInput1>true</IsConnectedInput1>
+          <IsConnectedInput2>true</IsConnectedInput2>
+        </Element>
+        <Element xsi:type="SerializebleOutput">
+          <ID>3</ID>
+          <FocusOnElement>false</FocusOnElement>
+          <StartPoint>618, 303</StartPoint>
+          <SignalIn>true</SignalIn>
+          <IsConnected>true</IsConnected>
+        </Element>
+        <Element xsi:type="SerializebleConnector">
+          <ID>4</ID>
+          <FocusOnElement>false</FocusOnElement>
+          <StartPoint>365, 307</StartPoint>
+          <EndPoint>625, 320</EndPoint>
+          <FirstElement>2</FirstElement>
+          <SecondElement>3</SecondElement>
+          <ConnectToFirstInput>true</ConnectToFirstInput>
+          <ConnectFromFirstInput>true</ConnectFromFirstInput>
+          <ReverseConnection>false</ReverseConnection>
+        </Element>
+        <Element xsi:type="SerializebleConnector">
+          <ID>5</ID>
+          <FocusOnElement>false</FocusOnElement>
+          <StartPoint>143, 355</StartPoint>
+          <EndPoint>330, 317</EndPoint>
+          <FirstElement>1</FirstElement>
+          <SecondElement>2</SecondElement>
+          <ConnectToFirstInput>false</ConnectToFirstInput>
+          <ConnectFromFirstInput>true</ConnectFromFirstInput>
+          <ReverseConnection>false</ReverseConnection>
+        </Element>
+        <Element xsi:type="SerializebleConnector">
+          <ID>6</ID>
+          <FocusOnElement>false</FocusOnElement>
+          <StartPoint>134, 233</StartPoint>
+          <EndPoint>332, 301</EndPoint>
+          <FirstElement>0</FirstElement>
+          <SecondElement>2</SecondElement>
+          <ConnectToFirstInput>true</ConnectToFirstInput>
+          <ConnectFromFirstInput>true</ConnectFromFirstInput>
+          <ReverseConnection>false</ReverseConnection>
+        </Element>
+      </Elements>
+    </Scheme>
+  </Schemes>
+</Project>

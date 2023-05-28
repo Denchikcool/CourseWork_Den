@@ -13,6 +13,7 @@ using YamlDotNet.Serialization;
 using Avalonia.Controls.Shapes;
 using System.Linq;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 namespace CourseWork.ViewModels
 {
@@ -40,7 +41,7 @@ namespace CourseWork.ViewModels
         }
         public void AddNewProjectPath(string name, string path)
         {
-            ProjectFile file = new ProjectFile { Name = name, Path = path};
+            ProjectFile file = new ProjectFile { Name = name, Path = path };
             ProjectFile find = null;
             foreach (ProjectFile item in startModel.Projects)
             {
@@ -55,11 +56,11 @@ namespace CourseWork.ViewModels
             {
                 startModel.Projects.Insert(0, file);
             }
-            XmlSerializer formatter = new XmlSerializer(typeof(ObservableCollection<ProjectFile>));
-
-            using (var stream = new FileStream("../../../Assets/projects.xml", FileMode.Create, FileAccess.Write, FileShare.Write))
+            JsonSerializerSettings settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All, Formatting = Formatting.Indented };
+            string Serialized = JsonConvert.SerializeObject(startModel.Projects, settings);
+            using (StreamWriter writer = new StreamWriter("../../../Assets/projects.json", false))
             {
-                formatter.Serialize(stream, startModel.Projects);
+                writer.WriteLine(Serialized);
             }
         }
         public void OpenProject(string path)

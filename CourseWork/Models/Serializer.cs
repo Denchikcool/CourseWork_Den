@@ -28,35 +28,36 @@ namespace CourseWork.Models
         public static void Save(string path, Project data)
         {
             Project project = ToSerializeble(data);
-            JsonSerializerSettings settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All, Formatting = Formatting.Indented };
-            string Serialized = JsonConvert.SerializeObject(project, settings);
-            using (StreamWriter writer = new StreamWriter(path, false))
+            XmlSerializer formatter = new XmlSerializer(typeof(Project));
+
+            using (var stream = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Write))
             {
-                writer.WriteLine(Serialized);
+                formatter.Serialize(stream, project);
             }
         }
 
         public static Project Load(string path)
         {
-            JsonSerializerSettings settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All, Formatting = Formatting.Indented };
-            string Serialized;
-            using (StreamReader reader = new StreamReader(path))
+
+            XmlSerializer formatter = new XmlSerializer(typeof(Project));
+            Project project;
+            using (var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
-                Serialized = reader.ReadToEnd();
+                project = ((Project)formatter.Deserialize(stream));
             }
-            return FromSerializeble(JsonConvert.DeserializeObject<Project>(Serialized, settings));
+            return FromSerializeble(project);
         }
 
         public static Project ToSerializeble(Project data)
         {
-            Project new_project = new Project { Name = data.Name};
+            Project new_project = new Project { Name = data.Name };
             var schemes = data.Schemes;
             ObservableCollection<Scheme> new_schemes = new ObservableCollection<Scheme>();
             foreach (Scheme scheme in schemes)
             {
                 ObservableCollection<Element> new_elements = new ObservableCollection<Element>();
                 var elements = scheme.Elements;
-                foreach(Element element in elements)
+                foreach (Element element in elements)
                 {
                     if (element is Connector connector)
                     {
@@ -94,7 +95,7 @@ namespace CourseWork.Models
                         new_elements.Add(elem);
                         continue;
                     }
-                    
+
                     if (element is NotGate not)
                     {
                         new_elements.Add(new SerializebleNot { ID = not.ID, FocusOnElement = not.FocusOnElement, Input = not.Input, IsConnected = not.IsConnected, StartPoint = not.StartPoint.ToString() });
@@ -131,7 +132,7 @@ namespace CourseWork.Models
                             StartPoint = Point.Parse(connector.StartPoint),
                             EndPoint = Point.Parse(connector.EndPoint)
                         };
-                        foreach(Element el in new_elements)
+                        foreach (Element el in new_elements)
                         {
                             if (el is LogicalElement log)
                             {

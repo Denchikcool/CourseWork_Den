@@ -1,6 +1,7 @@
 ﻿using Avalonia.Controls.Shapes;
 using CourseWork.Models;
 using CourseWork.Models.SerializebleElements;
+using Newtonsoft.Json;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -30,12 +31,13 @@ namespace CourseWork.ViewModels
         {
             try
             {
-                XmlSerializer formatter = new XmlSerializer(typeof(ObservableCollection<ProjectFile>));
-
-                using (var stream = new FileStream("../../../Assets/projects.xml", FileMode.Open, FileAccess.Read, FileShare.Read))
+                JsonSerializerSettings settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All, Formatting = Formatting.Indented };
+                string Serialized;
+                using (StreamReader reader = new StreamReader("../../../Assets/projects.json"))
                 {
-                    Projects = (ObservableCollection<ProjectFile>)formatter.Deserialize(stream);
+                    Serialized = reader.ReadToEnd();
                 }
+                Projects = JsonConvert.DeserializeObject<ObservableCollection<ProjectFile>>(Serialized, settings);
             }
             catch { }
         }

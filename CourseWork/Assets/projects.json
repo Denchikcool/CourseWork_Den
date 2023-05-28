@@ -1,0 +1,10 @@
+{
+  "$type": "System.Collections.ObjectModel.ObservableCollection`1[[CourseWork.Models.ProjectFile, CourseWork]], System.ObjectModel",
+  "$values": [
+    {
+      "$type": "CourseWork.Models.ProjectFile, CourseWork",
+      "Name": "Project",
+      "Path": "C:\\Users\\user\\Desktop\\Виз. программирование\\темповая_ещё\\CourseWork_Den\\CourseWork\\test1.xml"
+    }
+  ]
+}

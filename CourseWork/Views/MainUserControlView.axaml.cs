@@ -34,9 +34,9 @@ namespace CourseWork.Views
             OpenFileDialog openFileDialog = new OpenFileDialog();
             List<string> formates = new List<string>
             {
-                "json"
+                "xml"
             };
-            openFileDialog.Filters.Add(new FileDialogFilter { Extensions = formates, Name = "Json files" });
+            openFileDialog.Filters.Add(new FileDialogFilter { Extensions = formates, Name = "xml files" });
             openFileDialog.AllowMultiple = false;
             string[]? result = await openFileDialog.ShowAsync(this.GetLogicalParent() as MainWindow);
             if (DataContext is MainUserControlViewModel dataContext)
@@ -57,9 +57,9 @@ namespace CourseWork.Views
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             List<string> formates = new List<string>
             {
-                "json"
+                "xml"
             };
-            saveFileDialog.Filters.Add(new FileDialogFilter { Extensions = formates, Name = "Json files" });
+            saveFileDialog.Filters.Add(new FileDialogFilter { Extensions = formates, Name = "xml files" });
             string? result = await saveFileDialog.ShowAsync(this.GetLogicalParent() as MainWindow);
             if (DataContext is MainUserControlViewModel dataContext)
             {
